@@ -1,31 +1,31 @@
 package com.skypro.homework.model;
 
 public class Employee {
-    private final String firtname;
-    private final String lostname;
-    private final int departament;
+    private final String firstName;
+    private final String lastName;
+    private final int department;
     private final int salary;
     private static int counter = 1;
     private final int id;
 
-    public Employee(String firtname, String lostname, int departament, int salary) {
-        this.firtname = firtname;
-        this.lostname = lostname;
-        this.departament = departament;
+    public Employee(String firstName, String lastName, int department, int salary) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.department = department;
         this.salary = salary;
         this.id = counter++;
     }
 
-    public String getFirtname() {
-        return firtname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getLostname() {
-        return lostname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public int getDepartament() {
-        return departament;
+    public int getDepartment() {
+        return department;
     }
 
     public int getSalary() {
@@ -39,9 +39,9 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "firtname='" + firtname + '\'' +
-                ", lostname='" + lostname + '\'' +
-                ", departament=" + departament +
+                "firtname='" + firstName + '\'' +
+                ", lostname='" + lastName + '\'' +
+                ", departament=" + department +
                 ", salary=" + salary +
                 ", id=" + id +
                 '}';
