@@ -58,7 +58,7 @@ public class EmployeeService {
 
     public int getEmployeesMoreSalary() {
         for (Employee employee : employees.values()) {
-            double averageSalary = employee.getSalary()/employee.getId();
+            double averageSalary = employee.getSalary() / employee.getId();
             if (employee != null && employee.getSalary() > averageSalary) {
             }
         }
