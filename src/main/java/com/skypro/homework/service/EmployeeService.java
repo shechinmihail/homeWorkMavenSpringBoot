@@ -4,9 +4,11 @@ import com.skypro.homework.model.Employee;
 import com.skypro.homework.record.EmployeeRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
+import static java.util.Comparator.comparingInt;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.maxBy;
 
 @Service
 public class EmployeeService {
@@ -35,33 +37,16 @@ public class EmployeeService {
                 .sum();
     }
 
-    public int getEmployeeMinSalary() {
-        int minSalary = Integer.MAX_VALUE;
-        for (Employee employee : employees.values()) {
-            if (employee != null && employee.getSalary() < minSalary) {
-                minSalary = employee.getSalary();
-            }
-        }
-        return minSalary;
+    public Employee getEmployeeMinSalary() {
+        return employees.values().stream().min(Comparator.comparing(Employee::getSalary)).get();
     }
 
-    public int getEmployeeMaxSalary() {
-        int maxSalary = Integer.MIN_VALUE;
-        for (Employee employee : employees.values()) {
-            if (employee != null && employee.getSalary() > maxSalary) {
-                maxSalary = employee.getSalary();
-
-            }
-        }
-        return maxSalary;
+    public Employee getEmployeeMaxSalary() {
+        return employees.values().stream().max(Comparator.comparing(Employee::getSalary)).get();
     }
 
-    public int getEmployeesMoreSalary() {
-        for (Employee employee : employees.values()) {
-            double averageSalary = employee.getSalary() / employee.getId();
-            if (employee != null && employee.getSalary() > averageSalary) {
-            }
-        }
-        return getEmployeesMoreSalary();
+    public Employee getEmployeesMoreSalary() {
+        return employees.values().stream().collect(collectingAndThen(maxBy(comparingInt(e -> e.getSalary())), Optional::get));
+
     }
 }
